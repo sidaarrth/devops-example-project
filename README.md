@@ -9,6 +9,8 @@
      $Pass = ConvertTo-SecureString -String "India@24" -AsPlainText –Force
      #Reset the account password
      Set-ADAccountPassword $user -NewPassword $Pass -Reset
+     #Force user to change password at next logon
+     Set-ADUser -Identity $user -ChangePasswordAtLogon $true
      #Display userid and password values 
      Write-Host $user, $Password
  }
