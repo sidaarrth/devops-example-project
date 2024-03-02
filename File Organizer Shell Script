@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Step 1: Create subdirectories
+mkdir -p images documents videos others
+
+# Step 2: Move files to respective directories based on their types
+for file in *; do
+    if [[ -f "$file" ]]; then
+        ext="${file##*.}"
+        case "$ext" in
+            jpg|jpeg|png|gif)
+                mv "$file" images ;;
+            pdf|doc|docx|txt)
+                mv "$file" documents ;;
+            mp4|mkv|avi|mov)
+                mv "$file" videos ;;
+            *)
+                mv "$file" others ;;
+        esac
+    fi
+done
+
+# Step 3: Display summary
+echo "File organization completed."
